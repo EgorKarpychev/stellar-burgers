@@ -7,9 +7,9 @@ import {
   updateUserApi,
   TLoginData,
   TRegisterData
-} from '../../utils/burger-api';
-import { TUser } from '../../utils/types';
-import { deleteCookie, setCookie } from '../../utils/cookie';
+} from '../../../utils/burger-api';
+import { TUser } from '@utils-types';
+import { deleteCookie, setCookie } from '../../../utils/cookie';
 
 export const checkUserAuth = createAsyncThunk('user/checkAuth', async () =>
   getUserApi()
@@ -49,7 +49,7 @@ interface UserState {
   error: string | null;
 }
 
-const initialState: UserState = {
+export const initialState: UserState = {
   user: null,
   isAuthChecked: false,
   error: null
