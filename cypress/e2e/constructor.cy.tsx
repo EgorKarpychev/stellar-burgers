@@ -12,6 +12,16 @@ describe('Тестирование конструктора бургера', () 
 
         cy.visit('/');
         cy.wait('@getIngredients');
+        cy.document().then(doc => {
+            const overlay = doc.getElementById('webpack-dev-server-client-overlay');
+            if (overlay) overlay.remove();
+        });
+    });
+
+    afterEach(() => {
+        // Очищаем куки и localStorage после каждого теста
+        cy.clearCookies();
+        cy.clearLocalStorage();
     });
 
     context('Работа с ингредиентами', () => {
