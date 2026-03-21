@@ -1,13 +1,13 @@
 import { FC, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from '../../services/store';
-import { fetchOrderByNumber } from '../../services/slices/feedSlice';
+import { fetchOrderByNumber } from '../../services/slices/feed/feedSlice';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 
 export const OrderInfo: FC = () => {
-  const { number } = useParams<{ number: string }>();
+  const { number } = useParams<{ number: string }>(); // Получаем номер заказа из URL
   const dispatch = useDispatch();
 
   const { ingredients } = useSelector((state) => state.ingredients);
@@ -23,6 +23,7 @@ export const OrderInfo: FC = () => {
     }
   }, [dispatch, orderData, number]);
 
+  /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {
     if (!orderData || !ingredients.length) return null;
 
